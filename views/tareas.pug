@@ -43,18 +43,18 @@ html
         // /.nav-collapse
     .container
       .starter-template
-        h1 Pàgina pràctica node UF2    
+        h1 Tasques UF2    
         each tarea, i in tareas
             h4 #{tarea.nom}
                 |
                 br
                 .progress
-                    .progress-bar(role='progressbar', aria-valuenow='tarea.realització', aria-valuemin='0', aria-valuemax='100', style='width:'+ tarea.realització+ '%')
+                    .progress-bar(role='progressbar', aria-valuenow='tarea.realització', aria-valuemin='0', aria-valuemax='100', style='width:'+ tarea.realització + '%')
                         span.sr-only tarea.realització% Complete
                             |  #{tarea.realització} %
 
+                input.btn.btn-default(type='submit', value='Actualitza')
                 
-                button.btn.btn-default(type='submit') Update
         br
         |
         button.btn.btn-default(type='submit', onclick="window.location='/tareas/new'") Añadir

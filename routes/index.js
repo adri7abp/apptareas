@@ -36,4 +36,25 @@ router.get('/tareas/new', function(req, res, next){
    res.render('nuevaTarea', {title: 'Express'}); 
 });
 
+router.post('/tareas/new', function(req, res, next) {
+    
+    //Variables obtenidas del formulario
+    var conjunto;
+    var nombre = req.body.nombre;
+    var etiquetas = req.body.etiquetas;
+    var porcentaje = req.body.porcentaje;
+    //Separo las etiquetas por comas y meto el string resultante
+    //en la variable conjunto
+    conjunto = etiquetas.split(',');
+    //Creo un array de la nueva tarea
+    var nuevaTarea = {
+        nom: nombre,
+        etiquetes: etiquetas,
+        realització: porcentaje
+    };
+    //Meto dicho array en el general de tareas y redirijo a /tareas
+    tareas.push(nuevaTarea);
+    res.redirect('/tareas');
+});
+
 module.exports = router;
