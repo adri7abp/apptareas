@@ -1,5 +1,4 @@
-doctype html
-html(lang='en')
+html
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -35,28 +34,27 @@ html(lang='en')
           a.navbar-brand(href='#') Project name
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
-              a(href='/') Home
             li
+              a(href='/') Home
+            li.active
               a(href='/tareas') Llistar tasques
             li
               a(href='#about') About
         // /.nav-collapse
     .container
       .starter-template
-        h1 Pàgina pràctica node UF2
-        p.lead
-          | Use this document as a way to quickly start any new project.
-          br
-          |  All you get is this text and a mostly barebones HTML document.
-    // /.container
-    //
-      Bootstrap core JavaScript
-      ==================================================
-    // Placed at the end of the document so the pages load faster
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-    script.
-      window.jQuery || document.write('<script src="javascripts/jquery.min.js"><\\/script>')
-    script(src='javascripts/bootstrap.min.js')
-    // IE10 viewport hack for Surface/desktop Windows 8 bug
-    script(src='javascripts/ie10-viewport-bug-workaround.js')
+        h1 Pàgina pràctica node UF2    
+        each tarea, i in tareas
+            h4 #{tarea.nom}
+                |
+                br
+                .progress
+                    .progress-bar(role='progressbar', aria-valuenow='tarea.realització', aria-valuemin='0', aria-valuemax='100', style='width:'+ tarea.realització+ '%')
+                        span.sr-only tarea.realització% Complete
+                            |  #{tarea.realització} %
+
+                
+                button.btn.btn-default(type='submit') Update
+        br
+        |
+        button.btn.btn-default(type='submit', onclick="window.location='/tareas/new'") Añadir
